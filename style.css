@@ -92,3 +92,10 @@ a {
   font-size: 35px;
   cursor: pointer;
 }
+.subtile {
+    position: relative;
+    left: -40px;
+    font-size: 12px;
+    bottom: 9vh;
+    text-align: left;
+}
