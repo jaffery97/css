@@ -21,48 +21,53 @@
   </head>
 
   <body>
-  <div class="box">
-    <p id="textToType"></p>
-    <textarea id="userInput" rows="4" cols="50"></textarea>
-  </div>
+    <div class="box">
+      <p id="textToType"></p>
+      <textarea id="userInput" rows="4" cols="50"></textarea>
+    </div>
 
-  <script>
-    const textToType = document.getElementById('textToType');
-    const userInput = document.getElementById('userInput');
-    const paragraphs = [
-      "The quick brown fox jumps over the lazy dog.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Programming is fun and challenging at the same time.",
-      // Add more paragraphs as needed
-    ];
+    <audio id="incorrectSound" src="wrong.mp3"></audio>
 
-    // Select a random paragraph
-    const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
-    textToType.textContent = randomParagraph;
+    <script>
+      const textToType = document.getElementById('textToType');
+      const userInput = document.getElementById('userInput');
+      const paragraphs = [
+        "The quick brown fox jumps over the lazy dog.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Programming is fun and challenging at the same time.",
+        // Add more paragraphs as needed
+      ];
 
-    let sound = new Audio('path_to_correct_sound_file.mp3');
+      // Select a random paragraph
+      const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
+      textToType.textContent = randomParagraph;
 
-    userInput.addEventListener('input', function () {
-      const inputText = this.value;
-      const textToMatch = textToType.textContent;
+      let sound = new Audio('wrong.mp3');
+      let incorrectSound = document.getElementById('incorrectSound');
 
-      for (let i = 0; i < inputText.length; i++) {
-        if (inputText[i] !== textToMatch[i]) {
-          textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
-          sound.pause();
-          return;
+      userInput.addEventListener('input', function () {
+        const inputText = this.value;
+        const textToMatch = textToType.textContent;
+
+        for (let i = 0; i < inputText.length; i++) {
+          if (inputText[i] !== textToMatch[i]) {
+            textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
+            incorrectSound.play();
+            return;
+          }
         }
-      }
+        
 
-      if (inputText === textToMatch) {
-        textToType.innerHTML = textToMatch;
-        sound.play();
-      } else {
-        textToType.innerHTML = textToMatch;
-      }
-    });
-  </script>
+        if (inputText === textToMatch) {
+          textToType.innerHTML = textToMatch;
+          sound.play();
+        } else {
+          textToType.innerHTML = textToMatch;
+        }
+        
+      });
+    </script>
 
-</body>
+  </body>
 
-</html>
+  </html>
