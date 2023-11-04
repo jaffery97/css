@@ -17,6 +17,21 @@
     .incorrect {
       color: red;
     }
+
+    .custom-alert {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      z-index: 9999;
+    }
+    
   </style>
   </head>
 
@@ -27,8 +42,23 @@
     </div>
 
     <audio id="incorrectSound" src="wrong.mp3"></audio>
-
+    <div class="custom-alert" id="customAlert">
+      <p>Incorrect</p>
+    </div>
     <script>
+
+
+
+      function customAlert(message) {
+        const alertBox = document.getElementById('customAlert');
+        alertBox.style.display = 'block';
+        alertBox.innerHTML = message;
+        setTimeout(function () {
+          alertBox.style.display = 'none';
+        }, 3000); // Close the alert after 2 seconds (2000 milliseconds)
+      }
+
+      
       const textToType = document.getElementById('textToType');
       const userInput = document.getElementById('userInput');
       const paragraphs = [
@@ -52,12 +82,13 @@
         for (let i = 0; i < inputText.length; i++) {
           if (inputText[i] !== textToMatch[i]) {
             textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
+            
             incorrectSound.play();
+            customAlert('Incorrect');
             return;
           }
         }
-        
-
+      
         if (inputText === textToMatch) {
           textToType.innerHTML = textToMatch;
           sound.play();
