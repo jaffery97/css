@@ -5,6 +5,33 @@
     <title>Detect Pressed</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <audio id="soundA" src="sounds/a.mp3"></audio>
+    <audio id="soundB" src="sounds/b.mp3"></audio>
+    <audio id="soundC" src="sounds/c.mp3"></audio>
+    <audio id="soundD" src="sounds/d.mp3"></audio>
+    <audio id="soundE" src="sounds/e.mp3"></audio>
+    <audio id="soundF" src="sounds/f.mp3"></audio>
+    <audio id="soundG" src="sounds/g.mp3"></audio>
+    <audio id="soundH" src="sounds/h.mp3"></audio>
+    <audio id="soundI" src="sounds/i.mp3"></audio>
+    <audio id="soundJ" src="sounds/j.mp3"></audio>
+    <audio id="soundK" src="sounds/k.mp3"></audio>
+    <audio id="soundL" src="sounds/l.mp3"></audio>
+    <audio id="soundM" src="sounds/m.mp3"></audio>
+    <audio id="soundN" src="sounds/n.mp3"></audio>
+    <audio id="soundO" src="sounds/o.mp3"></audio>
+    <audio id="soundP" src="sounds/p.mp3"></audio>
+    <audio id="soundQ" src="sounds/q.mp3"></audio>
+    <audio id="soundR" src="sounds/r.mp3"></audio>
+    <audio id="soundS" src="sounds/s.mp3"></audio>
+    <audio id="soundT" src="sounds/t.mp3"></audio>
+    <audio id="soundU" src="sounds/u.mp3"></audio>
+    <audio id="soundV" src="sounds/v.mp3"></audio>
+    <audio id="soundW" src="sounds/w.mp3"></audio>
+    <audio id="soundX" src="sounds/x.mp3"></audio>
+    <audio id="soundY" src="sounds/y.mp3"></audio>
+    <audio id="soundZ" src="sounds/z.mp3"></audio>
   </head>
   <body>
     <div class="box">
@@ -24,6 +51,18 @@
         box.querySelector(".key-name").innerText = keyName.toUpperCase();
         box.querySelector(".key span").innerText = keyName;
         box.classList.add("active");
+      });
+    </script>
+
+    <script>
+      document.addEventListener("keydown", function (event) {
+        const key = event.key.toLowerCase(); // Convert to lowercase to handle both cases
+
+        // Check if the pressed key is a letter
+        if (/^[a-z]$/.test(key)) {
+          const sound = document.getElementById("sound" + key.toUpperCase());
+          sound.play();
+        }
       });
     </script>
 

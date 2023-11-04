@@ -64,8 +64,9 @@ a {
     margin: 30px;
 }
 .column {
+  margin:20px;
   float: left;
-  width: 33.33%;
+  width: 30%;
   padding: 50px;
   text-align: center;
   font-size: 25px;
