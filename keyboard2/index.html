@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <link rel="stylesheet" href="style.css">
+
+<head>
+  <meta charset="utf-8">
+  <title>Typing Challenge</title>
+  <style>
+    .box {
+      font-size: 18px;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+  </style>
+  </head>
+
+  <body>
+  <div class="box">
+    <p id="textToType"></p>
+    <textarea id="userInput" rows="4" cols="50"></textarea>
+  </div>
+
+  <script>
+    const textToType = document.getElementById('textToType');
+    const userInput = document.getElementById('userInput');
+    const paragraphs = [
+      "The quick brown fox jumps over the lazy dog.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "Programming is fun and challenging at the same time.",
+      // Add more paragraphs as needed
+    ];
+
+    // Select a random paragraph
+    const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
+    textToType.textContent = randomParagraph;
+
+    let sound = new Audio('path_to_correct_sound_file.mp3');
+
+    userInput.addEventListener('input', function () {
+      const inputText = this.value;
+      const textToMatch = textToType.textContent;
+
+      for (let i = 0; i < inputText.length; i++) {
+        if (inputText[i] !== textToMatch[i]) {
+          textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
+          sound.pause();
+          return;
+        }
+      }
+
+      if (inputText === textToMatch) {
+        textToType.innerHTML = textToMatch;
+        sound.play();
+      } else {
+        textToType.innerHTML = textToMatch;
+      }
+    });
+  </script>
+
+</body>
+
+</html>

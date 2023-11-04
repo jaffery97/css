@@ -15,7 +15,7 @@ body{
 }
 .box{
   padding: 25px;
-  width: 290px;
+  width: 50vh;
   border-radius: 15px;
   background: #fff;
   box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
@@ -64,4 +64,16 @@ body{
   width: 100%;
   font-size: 18px;
   text-align: center;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
 }
