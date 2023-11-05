@@ -1,104 +1,100 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/nav.css">
 
 <head>
-  <meta charset="utf-8">
-  <title>Typing Challenge</title>
-  <style>
-    .box {
-      font-size: 18px;
-    }
+	<meta charset="utf-8">
+	<title>Typing Challenge</title>
+	<style>
+		.box {
+			font-size: 18px;
+		}
+		
+		.correct {
+			color: green;
+		}
+		
+		.incorrect {
+			color: red;
+		}
+		
+		.custom-alert {
+			display: none;
+			position: fixed;
+			top: 20%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: #fff;
+			border: 1px solid #ccc;
+			padding: 20px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+			z-index: 9999;
+		}
+	</style>
+</head>
 
-    .correct {
-      color: green;
-    }
-
-    .incorrect {
-      color: red;
-    }
-
-    .custom-alert {
-      display: none;
-      position: fixed;
-      top: 20%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
-      z-index: 9999;
-    }
-    
-  </style>
-  </head>
-
-  <body>
-    <div class="box">
-      <p id="textToType"></p>
-      <textarea id="userInput" rows="4" cols="50"></textarea>
-    </div>
-
-    <audio id="incorrectSound" src="wrong.mp3"></audio>
-    <div class="custom-alert" id="customAlert">
-      <p>Incorrect</p>
-    </div>
-    <script>
-
-
-
-      function customAlert(message) {
-        const alertBox = document.getElementById('customAlert');
-        alertBox.style.display = 'block';
-        alertBox.innerHTML = message;
-        setTimeout(function () {
-          alertBox.style.display = 'none';
-        }, 3000); // Close the alert after 2 seconds (2000 milliseconds)
-      }
-
-      
-      const textToType = document.getElementById('textToType');
-      const userInput = document.getElementById('userInput');
-      const paragraphs = [
-        "The quick brown fox jumps over the lazy dog.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "Programming is fun and challenging at the same time.",
-        // Add more paragraphs as needed
+<body>
+	<nav>
+		<div class="header"> <a href="/index.html" class="logo">CSS</a>
+			<br>
+			<p>Computer Steering Skills</p>
+			<div class="header-right"> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
+		</div>
+	</nav>
+  <div class="body">
+	<div class="box">
+		<p id="textToType"></p>
+		<textarea id="userInput" rows="4" cols="50"></textarea>
+	</div>
+	<audio id="incorrectSound" src="wrong.mp3"></audio>
+	<div class="custom-alert" id="customAlert">
+		<p>Incorrect</p>
+	</div>
+  </div>
+	<script>
+		function customAlert(message) {
+			const alertBox = document.getElementById('customAlert');
+			alertBox.style.display = 'block';
+			alertBox.innerHTML = message;
+			setTimeout(function () {
+				alertBox.style.display = 'none';
+			}, 3000); // Close the alert after 2 seconds (2000 milliseconds)
+		}
+		const textToType = document.getElementById('textToType');
+		const userInput = document.getElementById('userInput');
+		const paragraphs = [
+        "The quick brown fox jumps over the lazy dog."
+        , "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        , "Programming is fun and challenging at the same time."
+        , // Add more paragraphs as needed
       ];
+		// Select a random paragraph
+		const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
+		textToType.textContent = randomParagraph;
+		let sound = new Audio('wrong.mp3');
+		let incorrectSound = document.getElementById('incorrectSound');
+		userInput.addEventListener('input', function () {
+			const inputText = this.value;
+			const textToMatch = textToType.textContent;
+			for (let i = 0; i < inputText.length; i++) {
+				if (inputText[i] !== textToMatch[i]) {
+					textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
+					incorrectSound.play();
+					customAlert('Incorrect');
+					return;
+				}
+			}
+			if (inputText === textToMatch) {
+				textToType.innerHTML = textToMatch;
+				sound.play();
+			}
+			else {
+				textToType.innerHTML = textToMatch;
+			}
+		});
+	</script>
+</body>
 
-      // Select a random paragraph
-      const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
-      textToType.textContent = randomParagraph;
-
-      let sound = new Audio('wrong.mp3');
-      let incorrectSound = document.getElementById('incorrectSound');
-
-      userInput.addEventListener('input', function () {
-        const inputText = this.value;
-        const textToMatch = textToType.textContent;
-
-        for (let i = 0; i < inputText.length; i++) {
-          if (inputText[i] !== textToMatch[i]) {
-            textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
-            
-            incorrectSound.play();
-            customAlert('Incorrect');
-            return;
-          }
-        }
-      
-        if (inputText === textToMatch) {
-          textToType.innerHTML = textToMatch;
-          sound.play();
-        } else {
-          textToType.innerHTML = textToMatch;
-        }
-        
-      });
-    </script>
-
-  </body>
-
-  </html>
+</html>

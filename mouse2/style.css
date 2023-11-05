@@ -148,12 +148,12 @@ input:checked + .disc {
 }
 /* Yellow's turn */
 input:hover + input + .disc {
-  color: #ffd918;
+  color: #1000f0;
   opacity: 1;
   transition: opacity 0.2s, top 0s;
 }
 input:checked + input + .disc {
-  color: #ffd918;
+  color: #021a92;
   opacity: 1;
 }
 
