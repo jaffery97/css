@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Keyboard Practice for Seniors</title>
+	<link rel="stylesheet" href="../nav.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<nav>
+		<div class="header">
+			<a href="/index.html" class="logo">CSS</a><br>
+			<p>Computer Steering Skills</p>
+			<div class="header-right">
+				<a href="#about" onclick="refreshPage()">Refresh</a>
+				<a href="#about">Log in</a>
+				<a href="#about">Sign in</a>
+			</div>
+		</div>
+		<script type="application/javascript" src="../nav.js"></script>
+	</nav>
+	<div class="body">
+	<audio id="keySound"></audio>
+
+	<div class="container_keyboard">
+		<h1>KeySound Typing Trainer</h1>
+		<p>Press keys on your keyboard to practice typing!</p>
+		<div id="keys">
+			<div class="key" data-key="A">A</div>
+			<div class="key" data-key="B">B</div>
+			<div class="key" data-key="C">C</div>
+			<div class="key" data-key="D">D</div>
+			<div class="key" data-key="E">E</div>
+			<div class="key" data-key="F">F</div>
+			<div class="key" data-key="G">G</div>
+			<div class="key" data-key="H">H</div>
+			<div class="key" data-key="I">I</div>
+			<div class="key" data-key="J">J</div>
+			<div class="key" data-key="K">K</div>
+			<div class="key" data-key="L">L</div>
+			<div class="key" data-key="M">M</div>
+			<div class="key" data-key="N">N</div>
+			<div class="key" data-key="O">O</div>
+			<div class="key" data-key="P">P</div>
+			<div class="key" data-key="Q">Q</div>
+			<div class="key" data-key="R">R</div>
+			<div class="key" data-key="S">S</div>
+			<div class="key" data-key="T">T</div>
+			<div class="key" data-key="U">U</div>
+			<div class="key" data-key="V">V</div>
+			<div class="key" data-key="W">W</div>
+			<div class="key" data-key="X">X</div>
+			<div class="key" data-key="Y">Y</div>
+			<div class="key" data-key="Z">Z</div>
+			<!-- Generating keys for numbers from 0 to 9 -->
+			<div class="key" data-key="0">0</div>
+			<div class="key" data-key="1">1</div>
+			<div class="key" data-key="2">2</div>
+			<div class="key" data-key="3">3</div>
+			<div class="key" data-key="4">4</div>
+			<div class="key" data-key="5">5</div>
+			<div class="key" data-key="6">6</div>
+			<div class="key" data-key="7">7</div>
+			<div class="key" data-key="8">8</div>
+			<div class="key" data-key="9">9</div>
+		</div>
+	</div>
+
+	<div class="sound-control">
+		<input type="checkbox" id="muteSound">
+		<label for="muteSound" id="muteIcon"></label>
+	</div>
+	</div>
+	<script>
+		const keySounds = document.getElementById('keySound');
+		const keys = document.querySelectorAll('.key');
+
+		keys.forEach(key => {
+			key.addEventListener('click', () => {
+				playSound(key.getAttribute('data-key'));
+			});
+		});
+
+		function playSound(key) {
+			keySounds.currentTime = 0;
+			keySounds.src = `sounds/${key}.mp3`;
+			keySounds.play();
+		}
+
+		document.addEventListener('keydown', (event) => {
+			const keyPressed = event.key.toUpperCase();
+			const keyElement = document.querySelector(`.key[data-key="${keyPressed}"]`);
+			if (keyElement) {
+				keyElement.style.backgroundColor = '#27ae60';
+				setTimeout(() => {
+					keyElement.style.backgroundColor = '#fff';
+				}, 300);
+				playSound(keyPressed);
+			}
+		});
+
+		function toggleSound() {
+			keySounds.muted = document.getElementById('muteSound').checked;
+			incorrectSound.muted = document.getElementById('muteSound').checked;
+		}
+		document.getElementById('muteSound').addEventListener('change', toggleSound);
+	</script>
+</body>
+
+</html>

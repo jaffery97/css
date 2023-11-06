@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../nav.css">
 
@@ -13,18 +14,25 @@
 
 <body>
 	<nav>
-		<div class="header"><a href="../index.html" class="logo">CSS</a>
-			<br>
+		<div class="header">
+			<a href="/index.html" class="logo">CSS</a><br>
 			<p>Computer Steering Skills</p>
-			<div class="header-right"> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
+			<div class="header-right">
+				<a href="#about" onclick="refreshPage()">Refresh</a>
+				<a href="#about">Log in</a>
+				<a href="#about">Sign in</a>
+			</div>
 		</div>
+		<script type="application/javascript" src="../nav.js"></script>
 	</nav>
-		<center id=result >
-			Time: <span id="timer">00:00</span>
+
+
+	<center id=result>
+		Time: <span id="timer">00:00</span>
 		<div id="resultDisplay"></div>
 	</center>
 	<div class="body">
-		
+
 		<div class="box">
 			<p id="textToType"></p>
 			<textarea id="userInput" rows="4" cols="50" onclick="startTimer()"></textarea>
@@ -33,8 +41,8 @@
 		<div class="custom-alert" id="customAlert">
 			<p>Incorrect</p>
 		</div>
-        <br>
-		
+		<br>
+
 		<div class="sound-control">
 			<input type="checkbox" id="muteSound">
 			<label for="muteSound" id="muteIcon"></label>
@@ -46,11 +54,10 @@
 		let startTime;
 		let endTime;
 
-		function displayResults(wrongAttempts, timeTaken) {
+		function displayResults(wrongAttempts, timeTaken, score) {
 			const resultDisplay = document.getElementById('resultDisplay');
 			const truncatedTime = timeTaken.toFixed(2).substring(0, 4); // Get the first two characters after the decimal point
-			resultDisplay.innerHTML = `Wrong attempts: ${wrongAttempts}<br>Time taken (in seconds): ${truncatedTime}`;
-
+			resultDisplay.innerHTML = `Time taken (in seconds): ${truncatedTime} | Score: ${score}`;
 		}
 
 		function customAlert(message) {
@@ -71,6 +78,7 @@
 		const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
 		textToType.textContent = randomParagraph;
 
+
 		let sound = new Audio('wrong2.mp3');
 		let csound = new Audio('correct.mp3');
 		let incorrectSound = document.getElementById('incorrectSound');
@@ -84,12 +92,19 @@
 			const inputText = this.value.replace(/‘|’/g, "'").replace(/“|”/g, '"');
 			const textToMatch = textToType.textContent.replace(/‘|’/g, "'").replace(/“|”/g, '"');
 
+			let score = 0;
+			let incorrectChars = 0;
+
 			for (let i = 0; i < inputText.length; i++) {
 				if (inputText[i] !== textToMatch[i] && textToMatch[i] !== '.' && inputText[i] !== '.') {
 					textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
 					incorrectSound.play();
 					customAlert('Incorrect');
+					incorrectChars++;
+					score -= 10;
 					return;
+				} else {
+					score += 10; // Award 10 points for each correct character
 				}
 			}
 
@@ -99,8 +114,8 @@
 				const timeTaken = (endTime - startTime) / 1000; // Convert milliseconds to seconds
 				textToType.innerHTML = textToMatch;
 				csound.play();
-				
-				displayResults(wrongAttempts, timeTaken);
+				score = Math.max(score, 0); // Prevent negative scores
+				displayResults(incorrectChars, timeTaken, score);
 			} else {
 				textToType.innerHTML = textToMatch;
 			}

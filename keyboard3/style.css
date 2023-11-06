@@ -1,0 +1,67 @@
+/* Import Google Font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+	/* margin: 0; */
+	padding: 0;
+	box-sizing: border-box;
+	font-family: font-family: 'Fira Sans', sans-serif;
+}
+
+.body {
+	display: flex;
+	height: 88vh;
+	padding: 100px;
+	align-items: center;
+	justify-content: center;
+	background-color: #4158D0;
+	background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+}
+
+.container_keyboard {
+	text-align: center;
+}
+
+.key {
+	width: 60px;
+	height: 60px;
+	border: 1px solid #aaa;
+	color: black;
+	display: inline-block;
+	background-color:gold;
+	margin: 5px;
+	text-align: center;
+	line-height: 60px;
+	font-size: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+.sound-control {
+	position: absolute;
+	bottom: 50px;
+	right: 30px;
+}
+
+.sound-control label {
+	display: block;
+	width: 50px;
+	height: 50px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#muteSound {
+	display: none;
+}
+
+#muteIcon {
+	background-image: url('unmute.png');
+}
+
+#muteSound:checked + #muteIcon {
+	background-image: url('mute.png');
+}
+#keys {
+}
