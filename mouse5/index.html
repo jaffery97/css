@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alphabet Sequence Game</title>
+    <title>Alphabet Sequence</title>
     <link rel="stylesheet" href="../nav.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -26,7 +26,7 @@
     <div class="body">
         <div class="container">
             <h1>Alphabet Sequence</h1>
-            <p>Click the letters in alphabetical order!</p>
+            <p>Press the letters on your keyboard in alphabetical order!</p>
             <div class="alpha-grid" id="alpha-grid"></div>
         </div>
     </div>
@@ -47,18 +47,20 @@
                 const letterElement = document.createElement('div');
                 letterElement.classList.add('number');
                 letterElement.textContent = letter;
-                letterElement.addEventListener('click', () => handleLetterClick(letterElement));
                 letterElements.push(letterElement);
                 letterGrid.appendChild(letterElement);
             });
         }
 
-        function handleLetterClick(element) {
-            const clickedLetter = element.textContent;
+        function handleKeyboardEvent(event) {
+            const keyPressed = event.key.toUpperCase();
 
-            if (clickedLetter === expectedLetter) {
-                element.style.backgroundColor = '#27ae60';
-                element.style.pointerEvents = 'none';
+            if (keyPressed === expectedLetter) {
+                const currentLetterElement = letterElements.find(element => element.textContent === keyPressed);
+
+                currentLetterElement.style.backgroundColor = '#27ae60';
+                currentLetterElement.style.pointerEvents = 'none';
+
                 expectedLetter = String.fromCharCode(expectedLetter.charCodeAt(0) + 1);
                 checkWin();
             } else {
@@ -74,11 +76,12 @@
 
         function checkWin() {
             if (expectedLetter > 'Z') {
-                alert('Congratulations! You clicked all the letters in order!');
+                alert('Congratulations! You pressed all the letters in order!');
             }
         }
 
         createGrid();
+        document.addEventListener('keydown', handleKeyboardEvent);
     </script>
 </body>
 
