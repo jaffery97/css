@@ -7,31 +7,7 @@
 	<meta charset="utf-8">
 	<title>Typing Challenge</title>
 	<style>
-		.box {
-			font-size: 18px;
-		}
-		
-		.correct {
-			color: green;
-		}
-		
-		.incorrect {
-			color: red;
-		}
-		
-		.custom-alert {
-			display: none;
-			position: fixed;
-			top: 20%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			background: #fff;
-			border: 1px solid #ccc;
-			padding: 20px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-			border-radius: 5px;
-			z-index: 9999;
-		}
+
 	</style>
 </head>
 
@@ -43,99 +19,124 @@
 			<div class="header-right"> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
 		</div>
 	</nav>
-  <div class="body">
-	<div class="box">
-		<p id="textToType"></p>
-		<textarea id="userInput" rows="4" cols="50"></textarea>
+		<center id=result >
+			Time: <span id="timer">00:00</span>
+		<div id="resultDisplay"></div>
+	</center>
+	<div class="body">
+		
+		<div class="box">
+			<p id="textToType"></p>
+			<textarea id="userInput" rows="4" cols="50" onclick="startTimer()"></textarea>
+		</div>
+		<audio id="incorrectSound" src="wrong2.mp3"></audio>
+		<div class="custom-alert" id="customAlert">
+			<p>Incorrect</p>
+		</div>
+        <br>
+		
+		<div class="sound-control">
+			<input type="checkbox" id="muteSound">
+			<label for="muteSound" id="muteIcon"></label>
+		</div>
 	</div>
-	<audio id="incorrectSound" src="wrong.mp3"></audio>
-	<div class="custom-alert" id="customAlert">
-		<p>Incorrect</p>
-	</div>
-  </div>
+
 	<script>
+		let wrongAttempts = 0;
+		let startTime;
+		let endTime;
+
+		function displayResults(wrongAttempts, timeTaken) {
+			const resultDisplay = document.getElementById('resultDisplay');
+			const truncatedTime = timeTaken.toFixed(2).substring(0, 4); // Get the first two characters after the decimal point
+			resultDisplay.innerHTML = `Wrong attempts: ${wrongAttempts}<br>Time taken (in seconds): ${truncatedTime}`;
+
+		}
+
 		function customAlert(message) {
 			const alertBox = document.getElementById('customAlert');
 			alertBox.style.display = 'block';
 			alertBox.innerHTML = message;
-			setTimeout(function () {
+			setTimeout(function() {
 				alertBox.style.display = 'none';
-			}, 3000); // Close the alert after 2 seconds (2000 milliseconds)
+			}, 1000); // Close the alert after 2 seconds (2000 milliseconds)
 		}
+
 		const textToType = document.getElementById('textToType');
 		const userInput = document.getElementById('userInput');
 		const paragraphs = [
-        "The quick brown fox jumps over the lazy dog."
-        , "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        , "Programming is fun and challenging at the same time."
-        , "Success usually comes to those who are too busy to be looking for it."
-        , "The way to get started is to quit talking and begin doing."
-        , "Don’t watch the clock; do what it does. Keep going."
-        , "The only limit to our realization of tomorrow will be our doubts of today."
-        , "Believe you can and you’re halfway there."
-        , "Your time is limited, don't waste it living someone else's life."
-        , "Failure is the condiment that gives success its flavor."
-        , "Opportunities don't happen, you create them."
-        , "The only way to do great work is to love what you do."
-        , "Don't be afraid to give up the good to go for the great."
-        , "The future belongs to those who believe in the beauty of their dreams."
-        , "It always seems impossible until it's done."
-        , "You miss 100% of the shots you don't take."
-        , "Life is 10% what happens to us and 90% how we react to it."
-        , "Success is not in what you have, but who you are."
-        , "Never give up, for that is just the place and time that the tide will turn."
-        , "The secret of getting ahead is getting started."
-        , "In the middle of difficulty lies opportunity."
-        , "If you want to achieve greatness stop asking for permission."
-        , "The best way to predict the future is to create it."
-        , "Don’t let yesterday take up too much of today."
-        , "Your limitation—it's only your imagination."
-        , "Great things never come from comfort zones."
-        , "Dream it. Wish it. Do it."
-        , "Work hard in silence, let success make the noise."
-        , "Success is walking from failure to failure with no loss of enthusiasm."
-        , "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle."
-        , "Push yourself, because no one else is going to do it for you."
-        , "In a gentle way, you can shake the world."
-        , "Be so good they can’t ignore you."
-        , "Wake up with determination. Go to bed with satisfaction."
-        , "The harder you work for something, the greater you'll feel when you achieve it."
-        , "Do not wait; the time will never be 'just right.' Start where you stand, and work with whatever tools you may have at your command, and better tools will be found as you go along."
-        , "Don't stop when you're tired, stop when you're done."
-        , "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful."
-        , "Everything you’ve ever wanted is on the other side of fear."
-        , "The best revenge is massive success."
-        , "Opportunities are like sunrises. If you wait too long, you miss them."
-        , "The road to success and the road to failure are almost exactly the same."
-        , "You have to be odd to be number one."
-        , "If you are not willing to risk the usual, you will have to settle for the ordinary."
-        , "All our dreams can come true, if we have the courage to pursue them."
-        , "No masterpiece was ever created by a lazy artist."
-      ];
+			"The quick brown fox jumps over the lazy dog.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Programming is fun and challenging at the same time.", "Success usually comes to those who are too busy to be looking for it.", "The way to get started is to quit talking and begin doing.", "Don’t watch the clock; do what it does. Keep going.", "The only limit to our realization of tomorrow will be our doubts of today.", "Believe you can and you’re halfway there.", "Your time is limited, don't waste it living someone else's life.", "Failure is the condiment that gives success its flavor.", "Opportunities don't happen, you create them.", "The only way to do great work is to love what you do.", "Don't be afraid to give up the good to go for the great.", "The future belongs to those who believe in the beauty of their dreams.", "It always seems impossible until it's done.", "You miss 100% of the shots you don't take.", "Life is 10% what happens to us and 90% how we react to it.", "Success is not in what you have, but who you are.", "Never give up, for that is just the place and time that the tide will turn.", "The secret of getting ahead is getting started.", "In the middle of difficulty lies opportunity.", "If you want to achieve greatness stop asking for permission.", "The best way to predict the future is to create it.", "Don’t let yesterday take up too much of today.", "Your limitation—it's only your imagination.", "Great things never come from comfort zones.", "Dream it. Wish it. Do it.", "Work hard in silence, let success make the noise.", "Success is walking from failure to failure with no loss of enthusiasm.", "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.", "Push yourself, because no one else is going to do it for you.", "In a gentle way, you can shake the world.", "Be so good they can’t ignore you.", "Wake up with determination. Go to bed with satisfaction.", "The harder you work for something, the greater you'll feel when you achieve it.", "Do not wait; the time will never be 'just right.' Start where you stand, and work with whatever tools you may have at your command, and better tools will be found as you go along.", "Don't stop when you're tired, stop when you're done.", "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.", "Everything you’ve ever wanted is on the other side of fear.", "The best revenge is massive success.", "Opportunities are like sunrises. If you wait too long, you miss them.", "The road to success and the road to failure are almost exactly the same.", "You have to be odd to be number one.", "If you are not willing to risk the usual, you will have to settle for the ordinary.", "All our dreams can come true, if we have the courage to pursue them.", "No masterpiece was ever created by a lazy artist."
+		];
 		// Select a random paragraph
 		const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
 		textToType.textContent = randomParagraph;
-		let sound = new Audio('wrong.mp3');
+
+		let sound = new Audio('wrong2.mp3');
+		let csound = new Audio('correct.mp3');
 		let incorrectSound = document.getElementById('incorrectSound');
-		userInput.addEventListener('input', function () {
-			const inputText = this.value;
-			const textToMatch = textToType.textContent;
+
+		function toggleSound() {
+			sound.muted = document.getElementById('muteSound').checked;
+			incorrectSound.muted = document.getElementById('muteSound').checked;
+		}
+
+		userInput.addEventListener('input', function() {
+			const inputText = this.value.replace(/‘|’/g, "'").replace(/“|”/g, '"');
+			const textToMatch = textToType.textContent.replace(/‘|’/g, "'").replace(/“|”/g, '"');
+
 			for (let i = 0; i < inputText.length; i++) {
-				if (inputText[i] !== textToMatch[i]) {
+				if (inputText[i] !== textToMatch[i] && textToMatch[i] !== '.' && inputText[i] !== '.') {
 					textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
 					incorrectSound.play();
 					customAlert('Incorrect');
 					return;
 				}
 			}
+
+
 			if (inputText === textToMatch) {
+				endTime = new Date();
+				const timeTaken = (endTime - startTime) / 1000; // Convert milliseconds to seconds
 				textToType.innerHTML = textToMatch;
-				sound.play();
-			}
-			else {
+				csound.play();
+				
+				displayResults(wrongAttempts, timeTaken);
+			} else {
 				textToType.innerHTML = textToMatch;
 			}
 		});
+
+		userInput.addEventListener('focus', function() {
+			startTime = new Date();
+		});
+
+		document.getElementById('muteSound').addEventListener('change', toggleSound);
+
+
+		let timer; // Variable to hold the timer
+
+		function startTimer() {
+			let minutes = 0;
+			let seconds = 0;
+
+			timer = setInterval(function() {
+				seconds++;
+
+				if (seconds === 60) {
+					seconds = 0;
+					minutes++;
+				}
+
+				const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+				const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+				document.getElementById('timer').textContent = `${displayMinutes}:${displaySeconds}`;
+			}, 1000); // Update the timer every second (1000 milliseconds)
+		}
+
+		function stopTimer() {
+			clearInterval(timer); // Stop the timer
+		}
 	</script>
 </body>
 
