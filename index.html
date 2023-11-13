@@ -9,65 +9,91 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="nav.css">
+	<style>
+		.header a:nth-child(3) {
+			display: block;
+		}
+		
+		.header a:nth-child(2) {
+			display: block;
+		}
+	</style>
 </head>
 
 <body>
-  <nav>
-    <div class="header">
-      <a href="index.html" class="logo">CSS</a><br>
-      <p>Computer Steering Skills</p>
-      <div class="header-right">
-		 <a href="#about" onclick="refreshPage()">Refresh</a>
-        <a href="#about">Log in</a>
-        <a href="#about" >Sign in</a>
-      </div>
-    </div>
-	  	<script type="application/javascript" src="nav.js"></script>
-  </nav>
-	<br><br><br><br>
+	<nav>
+		<div class="header"> <a href="index.html" class="logo">CSS</a>
+			<br>
+			<p>Computer Steering Skills</p>
+			<div class="header-right"> <a href="#about" onclick="refreshPage()" style="display: none;">Refresh</a> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
+		</div>
+		<script type="application/javascript" src="nav.js"></script>
+	</nav>
+	<br>
+	<br>
 	<!-- columns -->
 	<center>
 		<div class="row">
-			<div class="column" id="keyboard">
-				<a href="keyboard1/index.html" > Detect Pressed Key</a>
-				<p class="subtile">Keyboard</p>
-			</div>
-			<div class="column" id="keyboard">
-				<a href="keyboard2/index.html"> Typing Challenge</a>
-				<p class="subtile">Keyboard</p>
-			</div>			
-			
-			<div class="column" id="keyboard">
-				<a href="keyboard3/index.html"> KeySound Typing Trainer</a>
-				<p class="subtile">Keyboard</p>
-			</div>			
-			
-			<div class="column" id="mouse">
-				<a href="keyboard4/index.html"> Alphabet Sequence 1</a>
-				<p class="subtile">Mouse</p>
-			</div>
-			<div class="column" id="mouse">
-				<a href="mouse1/index.html"> Memory Card</a>
-				<p class="subtile">Mouse</p>
-			</div>
-			<div class="column" id="mouse">
-				<a href="mouse2/index.html">Connector</a>
-				<p class="subtile">Mouse</p>
-			</div>
-			<div class="column" id="mouse">
-				<a href="mouse3/index.html">Catch Me</a>
-				<p class="subtile">Mouse</p>
-			</div>			
-			<div class="column" id="mouse">
-				<a href="mouse4/index.html">Number Sequence</a>
-				<p class="subtile">Mouse</p>
-			</div>			
-			<div class="column" id="keyboard">
-				<a href="mouse5/index.html">Alphabet Sequence 2</a>
-				<p class="subtile">Keyboard</p>
-			</div>
+			<button onclick="showAll()" id="allBtn" class="choice">All</button>
+			<button onclick="showKeyboard()" id="keyboardBtn" class="choice">Keyboard</button>
+			<button onclick="showMouse()" id="mouseBtn" class="choice">Mouse</button>
+			<br>
+			<br>
+			<div class="column keyboard" id="keyboard"> <a href="keyboard1/index.html"> Detect Pressed Key</a> </div>
+			<div class="column keyboard" id="keyboard"> <a href="keyboard2/index.html"> Typing Challenge</a> </div>
+			<div class="column keyboard" id="keyboard"> <a href="keyboard3/index.html"> KeySound Typing Trainer</a> </div>
+			<div class="column mouse" id="mouse"> <a href="keyboard4/index.html"> Alphabet Sequence 1</a></div>
+			<div class="column mouse" id="mouse"> <a href="mouse1/index.html"> Memory Card</a></div>
+			<div class="column mouse" id="mouse"> <a href="mouse2/index.html">Connector</a></div>
+			<div class="column mouse" id="mouse"> <a href="mouse3/index.html">Catch Me</a></div>
+			<div class="column mouse" id="mouse"> <a href="mouse4/index.html">Number Sequence</a></div>
+			<div class="column keyboard" id="keyboard"> <a href="mouse5/index.html">Alphabet Sequence 2</a></div>
 		</div>
+		<div class="desktop-message"> This web app is only for desktop or laptop users. </div>
+		<footer> GNU @ 2023 | MJAFORY </footer>
 	</center>
+	<script>
+		function showKeyboard() {
+			hideAll();
+			showElements('keyboard');
+			updateButtonStyle('keyboardBtn');
+		}
+
+		function showMouse() {
+			hideAll();
+			showElements('mouse');
+			updateButtonStyle('mouseBtn');
+		}
+
+		function showAll() {
+			showElements('keyboard');
+			showElements('mouse');
+			updateButtonStyle('allBtn');
+		}
+
+		function hideAll() {
+			var columns = document.querySelectorAll('.column');
+			columns.forEach(function (column) {
+				column.style.display = 'none';
+			});
+		}
+
+		function showElements(id) {
+			var elements = document.querySelectorAll('.column#' + id);
+			elements.forEach(function (element) {
+				element.style.display = 'block';
+			});
+		}
+
+		function updateButtonStyle(selectedBtnId) {
+			// Remove 'selected' class from all buttons
+			document.querySelectorAll('button').forEach(function (btn) {
+				btn.classList.remove('selected');
+			});
+			// Add 'selected' class to the clicked button
+			document.getElementById(selectedBtnId).classList.add('selected');
+		}
+	</script>
 </body>
 
 </html>

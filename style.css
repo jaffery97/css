@@ -21,9 +21,11 @@ body {
 	font-size: 30px;
 }
 
+
 /* The grid: Three equal columns that floats next to each other */
+
 .row {
-/*
+	/*
 	width: 100%;
 	margin: 0px;
 	position: absolute;
@@ -39,7 +41,6 @@ body {
 	width: 31%;
 	padding: 50px;
 	text-align: center;
-
 	cursor: pointer;
 	color: white;
 	border-radius: 10px;
@@ -48,34 +49,122 @@ body {
 
 
 /* Clear floats after the columns */
+
 .row:after {
 	content: "";
 	display: table;
 	clear: both;
 }
 
-
-
-.subtile {
-	position: relative;
-	left: -40px;
-	font-size: 12px;
-	bottom: 9vh;
-	text-align: left;
+.column {
+	display: block;
+	/* Initially show all columns */
 }
 
+.selected {
+	background-color: #2c0b8e;
+	/* Set the background color for the selected button */
+	color: white;
+	/* Set text color for better visibility */
+}
+
+.keyboard {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	text-decoration: none;
+	color: #07b92a;
+	font-size: 18px;
+	border-radius: 5px;
+	border: 1px solid #07b92a;
+	position: relative;
+	transition: 0.3s;
+	background-color: #ffffff;
+}
+
+.keyboard::before {
+	content: "KEYBOARD";
+	display: block;
+	font-size: 13px;
+	background-color: blue;
+	color: #fff;
+	border-radius: 3px;
+	padding: 3px 5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(-5px, -30%);
+	transition: .3s;
+}
+
+.keyboard:hover::before {
+	transform: translate(-5px, -50%);
+}
+
+.mouse {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	text-decoration: none;
+	color: #07b92a;
+	font-size: 18px;
+	border-radius: 5px;
+	border: 1px solid #07b92a;
+	position: relative;
+	transition: 0.3s;
+	background-color: #ffffff;
+}
+
+.mouse::before {
+	content: "MOUSE";
+	display: block;
+	font-size: 13px;
+	background-color: yellow;
+	color: black;
+	border-radius: 3px;
+	padding: 3px 5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(-5px, -30%);
+	transition: .3s;
+}
+
+.mouse:hover::before {
+	transform: translate(-5px, -50%);
+}
+
+.choice {
+	min-width: 130px;
+	height: 40px;
+	color: #fff;
+	padding: 5px 10px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	outline: none;
+	border-radius: 5px;
+	border: 2px solid #2c0b8e;
+	background: gray;
+}
+
+.choice:hover {
+	background: #fff;
+	color: #2c0b8e
+}
 
 @media screen and (max-width:900px) {
-
 	.column {
 		width: 90%;
 	}
-
 	.column a {
 		font-size: 30px;
 	}
-	
-/*
+	/*
 		.row {
 		width: 100%;
 		margin: 0px;
@@ -85,29 +174,49 @@ body {
 		transform: none;
 	}
 */
-
-
 }
 
 #keyboard {
 	background-color: saddlebrown;
 }
 
+#keyboard {
+	background-color: saddlebrown;
+}
+
+footer {
+	position: relative;
+	text-align: center;
+	width: 100%;
+	bottom: -50px;
+	padding: 10px;
+}
+
+.desktop-message {
+	display: none;
+	text-align: center;
+	padding: 20px;
+	background-color: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+	border-radius: 5px;
+	margin: 10px;
+}
+
+
+/* Media query to show the message on screens with a min-width of 768px (typical for desktop/laptop screens) */
 
 @media screen and (max-width:1200px) {
-
 	.column {
 		width: 90%;
 	}
-
 	.column a {
 		font-size: 20px;
-
 	}
-
 	.row {
 		width: 100%;
-/*
+		display: none;
+		/*
 		margin: 0px;
 		position: absolute;
 		top: 70%;
@@ -115,9 +224,14 @@ body {
 		transform: translate(-50%, -50%);
 */
 	}
-
-}
-
-#keyboard {
-	background-color: saddlebrown;
+	footer {
+		position: relative;
+		text-align: center;
+		width: 100%;
+		bottom: -10px;
+		padding: 10px;
+	}
+	.desktop-message {
+		display: block;
+	}
 }

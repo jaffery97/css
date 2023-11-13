@@ -300,7 +300,7 @@ input:nth-of-type(5):checked ~ .column > input:nth-of-type(7):checked ~ .column 
 input:nth-of-type(7):checked ~ .column > input:nth-of-type(5):checked ~ .column > input:nth-of-type(3):checked ~ .column > input:nth-of-type(1):checked ~ .column::after,
 input:nth-of-type(9):checked ~ .column > input:nth-of-type(7):checked ~ .column > input:nth-of-type(5):checked ~ .column > input:nth-of-type(3):checked ~ .column::after,
 input:nth-of-type(11):checked ~ .column > input:nth-of-type(9):checked ~ .column > input:nth-of-type(7):checked ~ .column > input:nth-of-type(5):checked ~ .column::after {
-  content: "Yellow wins! :)";
+  content: "Blue wins! :)";
   z-index: 2;
   position: absolute;
   left: 0;
@@ -308,7 +308,7 @@ input:nth-of-type(11):checked ~ .column > input:nth-of-type(9):checked ~ .column
   width: 420px;
   height: 435px;
   visibility: visible;
-  color: #ffd918;
+  color: blue;
   font-size: 30px;
   text-align: center;
   line-height: 60px;

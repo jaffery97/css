@@ -15,7 +15,7 @@ nav {
 body {
   padding: 0;
   margin: 0;
-	font-family: 'Fira Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .header {
@@ -35,6 +35,14 @@ body {
   font-size: 12px;
   line-height: 25px;
   border-radius: 4px;
+}
+
+.header a:nth-child(2) {
+	display: none;
+}
+
+.header a:nth-child(3) {
+	display: none;
 }
 
 .header p {
