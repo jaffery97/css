@@ -7,7 +7,6 @@
 	<title>Detect Pressed</title>
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="../nav.css">
-
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<audio id="soundA" src="sounds/a.mp3"></audio>
 	<audio id="soundB" src="sounds/b.mp3"></audio>
@@ -46,27 +45,17 @@
 	<audio id="sound8" src="sounds/8.mp3"></audio>
 	<audio id="sound9" src="sounds/9.mp3"></audio>
 	<audio id="sound10" src="sounds/10.mp3"></audio>
-
-
-
-
 </head>
 
 <body>
 	<nav>
-		<div class="header">
-			<a href="../index.html" class="logo">CSS</a><br>
+		<div class="header"> <a href="../index.html" class="logo">CSS</a>
+			<br>
 			<p>Computer Steering Skills</p>
-			<div class="header-right">
-				<a href="#about" onclick="refreshPage()">Refresh</a>
-				<a href="#about">Log in</a>
-				<a href="#about">Sign in</a>
-			</div>
+			<div class="header-right"> <a href="#about" onclick="refreshPage()">Refresh</a> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
 		</div>
 		<script type="application/javascript" src="../nav.js"></script>
 	</nav>
-
-
 	<div class="body">
 		<div class="box">
 			<p class="text">Press any key</p>
@@ -78,6 +67,7 @@
 			</div>
 		</div>
 	</div>
+	<footer> 2023 | MJAFORY </footer>
 	<script>
 		const box = document.querySelector(".box");
 		document.addEventListener("keydown", e => {
@@ -87,15 +77,14 @@
 			box.classList.add("active");
 		});
 	</script>
-
 	<script>
-		document.addEventListener("keydown", function(event) {
+		document.addEventListener("keydown", function (event) {
 			const key = event.key.toLowerCase(); // Convert to lowercase to handle both cases
-
 			if (/^[a-z]$/.test(key)) {
 				const sound = document.getElementById("sound" + key.toUpperCase());
 				sound.play();
-			} else if (/^[0-9]$/.test(key)) {
+			}
+			else if (/^[0-9]$/.test(key)) {
 				const sound = document.getElementById("sound" + key);
 				sound.play();
 			}

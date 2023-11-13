@@ -14,25 +14,17 @@
 
 <body>
 	<nav>
-		<div class="header">
-			<a href="../index.html" class="logo">CSS</a><br>
+		<div class="header"> <a href="../index.html" class="logo">CSS</a>
+			<br>
 			<p>Computer Steering Skills</p>
-			<div class="header-right">
-				<a href="#about" onclick="refreshPage()">Refresh</a>
-				<a href="#about">Log in</a>
-				<a href="#about">Sign in</a>
-			</div>
+			<div class="header-right"> <a href="#about" onclick="refreshPage()">Refresh</a> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
 		</div>
 		<script type="application/javascript" src="../nav.js"></script>
 	</nav>
-
-
-	<center id=result>
-		Time: <span id="timer">00:00</span>
+	<center id=result> Time: <span id="timer">00:00</span>
 		<div id="resultDisplay"></div>
 	</center>
 	<div class="body">
-
 		<div class="box">
 			<p id="textToType"></p>
 			<textarea id="userInput" rows="4" cols="50" onclick="startTimer()"></textarea>
@@ -42,13 +34,12 @@
 			<p>Incorrect</p>
 		</div>
 		<br>
-
 		<div class="sound-control">
 			<input type="checkbox" id="muteSound">
 			<label for="muteSound" id="muteIcon"></label>
 		</div>
 	</div>
-
+	<footer> 2023 | MJAFORY </footer>
 	<script>
 		let wrongAttempts = 0;
 		let startTime;
@@ -64,11 +55,10 @@
 			const alertBox = document.getElementById('customAlert');
 			alertBox.style.display = 'block';
 			alertBox.innerHTML = message;
-			setTimeout(function() {
+			setTimeout(function () {
 				alertBox.style.display = 'none';
 			}, 1000); // Close the alert after 2 seconds (2000 milliseconds)
 		}
-
 		const textToType = document.getElementById('textToType');
 		const userInput = document.getElementById('userInput');
 		const paragraphs = [
@@ -77,8 +67,6 @@
 		// Select a random paragraph
 		const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
 		textToType.textContent = randomParagraph;
-
-
 		let sound = new Audio('wrong2.mp3');
 		let csound = new Audio('correct.mp3');
 		let incorrectSound = document.getElementById('incorrectSound');
@@ -87,14 +75,11 @@
 			sound.muted = document.getElementById('muteSound').checked;
 			incorrectSound.muted = document.getElementById('muteSound').checked;
 		}
-
-		userInput.addEventListener('input', function() {
+		userInput.addEventListener('input', function () {
 			const inputText = this.value.replace(/‘|’/g, "'").replace(/“|”/g, '"');
 			const textToMatch = textToType.textContent.replace(/‘|’/g, "'").replace(/“|”/g, '"');
-
 			let score = 0;
 			let incorrectChars = 0;
-
 			for (let i = 0; i < inputText.length; i++) {
 				if (inputText[i] !== textToMatch[i] && textToMatch[i] !== '.' && inputText[i] !== '.') {
 					textToType.innerHTML = textToMatch.substring(0, i) + '<span class="incorrect">' + textToMatch.substring(i, textToMatch.length) + '</span>';
@@ -103,12 +88,11 @@
 					incorrectChars++;
 					score -= 10;
 					return;
-				} else {
+				}
+				else {
 					score += 10; // Award 10 points for each correct character
 				}
 			}
-
-
 			if (inputText === textToMatch) {
 				endTime = new Date();
 				const timeTaken = (endTime - startTime) / 1000; // Convert milliseconds to seconds
@@ -116,35 +100,27 @@
 				csound.play();
 				score = Math.max(score, 0); // Prevent negative scores
 				displayResults(incorrectChars, timeTaken, score);
-			} else {
+			}
+			else {
 				textToType.innerHTML = textToMatch;
 			}
 		});
-
-		userInput.addEventListener('focus', function() {
+		userInput.addEventListener('focus', function () {
 			startTime = new Date();
 		});
-
 		document.getElementById('muteSound').addEventListener('change', toggleSound);
-
-
 		let timer; // Variable to hold the timer
-
 		function startTimer() {
 			let minutes = 0;
 			let seconds = 0;
-
-			timer = setInterval(function() {
+			timer = setInterval(function () {
 				seconds++;
-
 				if (seconds === 60) {
 					seconds = 0;
 					minutes++;
 				}
-
 				const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
 				const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
-
 				document.getElementById('timer').textContent = `${displayMinutes}:${displaySeconds}`;
 			}, 1000); // Update the timer every second (1000 milliseconds)
 		}

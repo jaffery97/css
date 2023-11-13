@@ -27,11 +27,9 @@
    		intervals++;
    	}
    }
-
    target.addEventListener('click', () => {
    	endTimer();
    });
-
    target.addEventListener('mouseover', () => {
    	startTimer();
    });
@@ -40,55 +38,54 @@
    	const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
    	const randomY = Math.floor(Math.random() * (window.innerHeight - 100));
    	const funnyQuotes = [
-        "Ready, Set, Go!",
-        "I'm on the move!",
-        "Wheee!",
-        "Catch me if you can!",
-        "Follow me!",
-        "Where to next?",
-        "Going places!",
-        "Adios amigos!",
-        "Onward and upward!",
-        "I'm off!",
-        "Choo choo!",
-        "Into the unknown!",
-        "Off to new adventures!",
-        "I'm free!",
-        "Over the rainbow!",
-        "Ta-da!",
-        "Let's dance!",
-        "To infinity and beyond!",
-        "Geronimo!",
-        "Hold my drink!",
-        "See ya later!",
-        "Here I go again!",
-        "Whoosh!",
-        "Off like a rocket!",
-        "Going, going, gone!",
-        "Ciao for now!",
-        "Hello, world!",
-        "Zoom zoom!",
-        "I'm outta here!",
-        "Blast off!",
-        "Just keep swimming!",
-        "To the stars and back!",
-        "Zippity doo dah!",
-        "Bonjour!",
-        "Cheers, mate!",
-        "That's the way the cookie crumbles!",
-        "Hasta la vista, baby!",
-        "Oh là là!",
-        "Away we go!",
-        "Let's roll!",
-        "To the moon and back!",
-        "Farewell, folks!",
-        "Shazam!",
-        "Up, up, and away!",
-        "Let's make like a banana and split!",
-        "Later, alligator!",
-        "To the ends of the earth!",
-        "Buh-bye!"
-      ];
+	  "Ready, Set!"
+	  , "Wheee!"
+	  , "Catch me!"
+	  , "Follow me!"
+	  , "Where to?"
+	  , "Going places!"
+	  , "Adios amigos!"
+	  , "Onward upward!"
+	  , "I'm off!"
+	  , "Choo choo!"
+	  , "Into unknown!"
+	  , "Off adventures!"
+	  , "I'm free!"
+	  , "Over rainbow!"
+	  , "Ta-da!"
+	  , "Let's dance!"
+	  , "Infinity beyond!"
+	  , "Geronimo!"
+	  , "Hold drink!"
+	  , "See later!"
+	  , "Here go!"
+	  , "Whoosh!"
+	  , "Like rocket!"
+	  , "Going, gone!"
+	  , "Ciao now!"
+	  , "Hello world!"
+	  , "Zoom zoom!"
+	  , "Outta here!"
+	  , "Blast off!"
+	  , "Just swimming!"
+	  , "Stars back!"
+	  , "Zippity dah!"
+	  , "Bonjour!"
+	  , "Cheers, mate!"
+	  , "That's way!"
+	  , "Hasta baby!"
+	  , "Oh là!"
+	  , "Away go!"
+	  , "Let's roll!"
+	  , "Moon back!"
+	  , "Farewell folks!"
+	  , "Shazam!"
+	  , "Up away!"
+	  , "Make banana!"
+	  , "Later alligator!"
+	  , "Ends earth!"
+	  , "Buh-bye!"
+	];
    	const randomQuote = funnyQuotes[Math.floor(Math.random() * funnyQuotes.length)];
    	target.textContent = randomQuote;
    	target.style.left = `${randomX}px`;

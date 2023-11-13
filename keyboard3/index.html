@@ -6,78 +6,71 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Keyboard Practice for Seniors</title>
 	<link rel="stylesheet" href="../nav.css">
-	<link rel="stylesheet" href="style.css">
-</head>
+	<link rel="stylesheet" href="style.css"> </head>
 
 <body>
 	<nav>
-		<div class="header">
-			<a href="../index.html" class="logo">CSS</a><br>
+		<div class="header"> <a href="../index.html" class="logo">CSS</a>
+			<br>
 			<p>Computer Steering Skills</p>
-			<div class="header-right">
-				<a href="#about" onclick="refreshPage()">Refresh</a>
-				<a href="#about">Log in</a>
-				<a href="#about">Sign in</a>
-			</div>
+			<div class="header-right"> <a href="#about" onclick="refreshPage()">Refresh</a> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
 		</div>
 		<script type="application/javascript" src="../nav.js"></script>
 	</nav>
 	<div class="body">
-	<audio id="keySound"></audio>
-
-	<div class="container_keyboard">
-		<h1>KeySound Typing Trainer</h1>
-		<p>Press keys on your keyboard to practice typing!</p>
-		<div id="keys">
-			<div class="key" data-key="a">A</div>
-            <div class="key" data-key="b">B</div>
-            <div class="key" data-key="c">C</div>
-            <div class="key" data-key="d">D</div>
-            <div class="key" data-key="e">E</div>
-            <div class="key" data-key="f">F</div>
-            <div class="key" data-key="g">G</div>
-            <div class="key" data-key="h">H</div>
-            <div class="key" data-key="i">I</div>
-            <div class="key" data-key="j">J</div>
-            <div class="key" data-key="k">K</div>
-            <div class="key" data-key="l">L</div>
-            <div class="key" data-key="m">M</div>
-            <div class="key" data-key="n">N</div>
-            <div class="key" data-key="o">O</div>
-            <div class="key" data-key="p">P</div>
-            <div class="key" data-key="q">Q</div>
-            <div class="key" data-key="r">R</div>
-            <div class="key" data-key="s">S</div>
-            <div class="key" data-key="t">T</div>
-            <div class="key" data-key="u">U</div>
-            <div class="key" data-key="v">V</div>
-            <div class="key" data-key="w">W</div>
-            <div class="key" data-key="x">X</div>
-            <div class="key" data-key="y">Y</div>
-            <div class="key" data-key="z">Z</div>
-			<!-- Generating keys for numbers from 0 to 9 -->
-			<div class="key" data-key="0">0</div>
-			<div class="key" data-key="1">1</div>
-			<div class="key" data-key="2">2</div>
-			<div class="key" data-key="3">3</div>
-			<div class="key" data-key="4">4</div>
-			<div class="key" data-key="5">5</div>
-			<div class="key" data-key="6">6</div>
-			<div class="key" data-key="7">7</div>
-			<div class="key" data-key="8">8</div>
-			<div class="key" data-key="9">9</div>
+		<audio id="keySound"></audio>
+		<div class="container_keyboard">
+			<h1>KeySound Typing Trainer</h1>
+			<p>Press keys on your keyboard to practice typing!</p>
+			<div id="keys">
+				<div class="key" data-key="a">A</div>
+				<div class="key" data-key="b">B</div>
+				<div class="key" data-key="c">C</div>
+				<div class="key" data-key="d">D</div>
+				<div class="key" data-key="e">E</div>
+				<div class="key" data-key="f">F</div>
+				<div class="key" data-key="g">G</div>
+				<div class="key" data-key="h">H</div>
+				<div class="key" data-key="i">I</div>
+				<div class="key" data-key="j">J</div>
+				<div class="key" data-key="k">K</div>
+				<div class="key" data-key="l">L</div>
+				<div class="key" data-key="m">M</div>
+				<div class="key" data-key="n">N</div>
+				<div class="key" data-key="o">O</div>
+				<div class="key" data-key="p">P</div>
+				<div class="key" data-key="q">Q</div>
+				<div class="key" data-key="r">R</div>
+				<div class="key" data-key="s">S</div>
+				<div class="key" data-key="t">T</div>
+				<div class="key" data-key="u">U</div>
+				<div class="key" data-key="v">V</div>
+				<div class="key" data-key="w">W</div>
+				<div class="key" data-key="x">X</div>
+				<div class="key" data-key="y">Y</div>
+				<div class="key" data-key="z">Z</div>
+				<!-- Generating keys for numbers from 0 to 9 -->
+				<div class="key" data-key="0">0</div>
+				<div class="key" data-key="1">1</div>
+				<div class="key" data-key="2">2</div>
+				<div class="key" data-key="3">3</div>
+				<div class="key" data-key="4">4</div>
+				<div class="key" data-key="5">5</div>
+				<div class="key" data-key="6">6</div>
+				<div class="key" data-key="7">7</div>
+				<div class="key" data-key="8">8</div>
+				<div class="key" data-key="9">9</div>
+			</div>
+		</div>
+		<div class="sound-control">
+			<input type="checkbox" id="muteSound">
+			<label for="muteSound" id="muteIcon"></label>
 		</div>
 	</div>
-
-	<div class="sound-control">
-		<input type="checkbox" id="muteSound">
-		<label for="muteSound" id="muteIcon"></label>
-	</div>
-	</div>
+	<footer> 2023 | MJAFORY </footer>
 	<script>
 		const keySounds = document.getElementById('keySound');
 		const keys = document.querySelectorAll('.key');
-
 		keys.forEach(key => {
 			key.addEventListener('click', () => {
 				playSound(key.getAttribute('data-key'));
@@ -89,7 +82,6 @@
 			keySounds.src = `sounds/${key}.mp3`;
 			keySounds.play();
 		}
-
 		document.addEventListener('keydown', (event) => {
 			const keyPressed = event.key.toLowerCase();
 			const keyElement = document.querySelector(`.key[data-key="${keyPressed}"]`);

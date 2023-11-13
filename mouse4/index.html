@@ -2,85 +2,77 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Number Sequence Game</title>
-    <link rel="stylesheet" href="../nav.css">
-    <link rel="stylesheet" href="style.css">
-</head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Number Sequence Game</title>
+	<link rel="stylesheet" href="../nav.css">
+	<link rel="stylesheet" href="style.css"> </head>
 
 <body>
-    <nav>
-        <div class="header">
-             <a href="../index.html" class="logo">CSS</a><br>
-            <p>Computer Steering Skills</p>
-            <div class="header-right">
-                <a href="#about" onclick="refreshPage()">Refresh</a>
-                <a href="#about">Log in</a>
-                <a href="#about">Sign in</a>
-            </div>
-        </div>
-        <script type="application/javascript" src="../nav.js"></script>
-    </nav>
+	<nav>
+		<div class="header"> <a href="../index.html" class="logo">CSS</a>
+			<br>
+			<p>Computer Steering Skills</p>
+			<div class="header-right"> <a href="#about" onclick="refreshPage()">Refresh</a> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
+		</div>
+		<script type="application/javascript" src="../nav.js"></script>
+	</nav>
+	<div class="body">
+		<div class="container">
+			<h1>Number Sequence Game</h1>
+			<p>Click the numbers in ascending order!</p>
+			<div class="number-grid" id="number-grid"></div>
+		</div>
+	</div>
+	<footer> 2023 | MJAFORY </footer>
+	<audio id="alertSound" src="wrong.mp3"></audio>
+	<script>
+		const numbers = Array.from({
+			length: 16
+		}, (_, i) => i + 1);
+		let expectedNumber = 1;
+		const numberGrid = document.getElementById('number-grid');
+		const numberElements = [];
+		const alertSound = document.getElementById('alertSound');
 
-    <div class="body">
-        <div class="container">
-            <h1>Number Sequence Game</h1>
-            <p>Click the numbers in ascending order!</p>
-            <div class="number-grid" id="number-grid"></div>
-        </div>
-    </div>
+		function createGrid() {
+			const shuffledNumbers = [...numbers].sort(() => Math.random() - 0.5);
+			shuffledNumbers.forEach(number => {
+				const numberElement = document.createElement('div');
+				numberElement.classList.add('number');
+				numberElement.textContent = number;
+				numberElement.addEventListener('click', () => handleNumberClick(numberElement));
+				numberElements.push(numberElement);
+				numberGrid.appendChild(numberElement);
+			});
+		}
 
-    <audio id="alertSound" src="wrong.mp3"></audio>
-
-    <script>
-        const numbers = Array.from({ length: 16 }, (_, i) => i + 1);
-        let expectedNumber = 1;
-
-        const numberGrid = document.getElementById('number-grid');
-        const numberElements = [];
-        const alertSound = document.getElementById('alertSound');
-
-        function createGrid() {
-            const shuffledNumbers = [...numbers].sort(() => Math.random() - 0.5);
-            shuffledNumbers.forEach(number => {
-                const numberElement = document.createElement('div');
-                numberElement.classList.add('number');
-                numberElement.textContent = number;
-                numberElement.addEventListener('click', () => handleNumberClick(numberElement));
-                numberElements.push(numberElement);
-                numberGrid.appendChild(numberElement);
-            });
-        }
-
-        function handleNumberClick(element) {
-            const clickedNumber = parseInt(element.textContent, 10);
-
-            if (clickedNumber === expectedNumber) {
-                element.style.backgroundColor = '#27ae60';
-                element.style.pointerEvents = 'none';
-                expectedNumber++;
-                checkWin();
-            } else {
+		function handleNumberClick(element) {
+			const clickedNumber = parseInt(element.textContent, 10);
+			if (clickedNumber === expectedNumber) {
+				element.style.backgroundColor = '#27ae60';
+				element.style.pointerEvents = 'none';
+				expectedNumber++;
+				checkWin();
+			}
+			else {
 				playAlertSound();
-                alert('Incorrect number. Try again!');
-                
-            }
-        }
+				alert('Incorrect number. Try again!');
+			}
+		}
 
-        function playAlertSound() {
-            alertSound.currentTime = 0;
-            alertSound.play();
-        }
+		function playAlertSound() {
+			alertSound.currentTime = 0;
+			alertSound.play();
+		}
 
-        function checkWin() {
-            if (expectedNumber > numbers.length) {
-                alert('Congratulations! You clicked all the numbers in order!');
-            }
-        }
-
-        createGrid();
-    </script>
+		function checkWin() {
+			if (expectedNumber > numbers.length) {
+				alert('Congratulations! You clicked all the numbers in order!');
+			}
+		}
+		createGrid();
+	</script>
 </body>
 
 </html>
