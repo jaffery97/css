@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@600&display=swap');    *{
+  /* margin: 0; */
+  padding: 0;
+  box-sizing: border-box;
+
+}
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin: 0;
+    }
+
+    .details {
+      position: relative;
+      top: 0px;
+      background-color: brown;
+      display: flex;
+      padding: 1px;
+      color: wheat;
+    }
+
+    .details p {
+      padding: 10px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    #target {
+      width: 60px;
+      height: 60px;
+      background-color:#2e5090;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+		text-align: center;
+      font-size: 10px;
+      padding: 5px;
+      color: white;
+      position: absolute;
+    }

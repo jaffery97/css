@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../nav.css">
+	<link rel="stylesheet" href="style.css">
+	<title>Catch Me - Alphabet Edition</title>
+</head>
+
+<body>
+	<nav>
+		<div class="header"> <a href="../index.html" class="logo">CSS</a>
+			<br>
+			<p>Computer Steering Skills</p>
+			<div class="header-right"> <a href="#about" onclick="refreshPage()">Refresh</a> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
+		</div>
+		<script type="application/javascript" src="../nav.js"></script>
+	</nav>
+	<div class="details">
+		<h1 style="background-color: black;padding-left: 10px;padding-right: : 10px;">Catch Me - Alphabet Edition</h1>
+		<p>Letters Caught: <span id="lettersCaught">0</span></p>
+		<p id="result" style="display: none;">Game Over! You caught <span id="lettersCaughtResult">0</span> letters. </p>
+	</div>
+	<div class="body">
+		<div id="target">Press the corresponding letter!</div>
+	</div>
+	<script type="application/javascript">
+		const target = document.getElementById('target');
+		const result = document.getElementById('result');
+		const lettersCaughtDisplay = document.getElementById('lettersCaught');
+		let lettersCaught = 0;
+
+		function startGame() {
+			result.style.display = 'none';
+			moveTarget();
+			document.addEventListener('keydown', checkKeyPress);
+		}
+
+		function endGame() {
+			result.style.display = 'block';
+			result.textContent = `Game Over! You caught ${lettersCaught} letters.`;
+			document.removeEventListener('keydown', checkKeyPress);
+		}
+
+		function checkKeyPress(event) {
+			const pressedKey = event.key.toLowerCase();
+			const targetLetter = target.textContent.toLowerCase();
+			if (pressedKey === targetLetter) {
+				lettersCaught++;
+				lettersCaughtDisplay.textContent = lettersCaught;
+				if (lettersCaught % 5 === 0) {
+					moveTarget();
+				}
+			}
+		}
+
+		function moveTarget() {
+			const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
+			const randomY = Math.floor(Math.random() * (window.innerHeight - 100));
+			const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // A-Z
+			target.textContent = randomLetter;
+			target.style.left = `${randomX}px`;
+			target.style.top = `${randomY}px`;
+		}
+		// Start the game when the page loads
+		document.addEventListener('DOMContentLoaded', startGame);
+		// Disable right-click
+		document.addEventListener('contextmenu', function (e) {
+			e.preventDefault();
+		});
+		// Disable text selection
+		document.addEventListener('selectstart', function (e) {
+			e.preventDefault();
+		});
+	</script>
+<!--
+	<details title="How to Play">
+		<summary>Instructions</summary>
+		<p> <strong>Objective:</strong> Catch as many randomly appearing alphabet letters as you can by pressing the corresponding letter on your keyboard. </p>
+		<p> <strong>How to Play:</strong> The game starts with a letter displayed on the screen. Press the corresponding letter on your keyboard to catch it. </p>
+		<p> <strong>Scoring:</strong> Each successful catch increases your letter count. After catching 10 letters, the target moves to a new random position on the screen. </p>
+		<p> <strong>Game Over:</strong> The game ends when you decide to stop or refresh the page. The result screen will display the total number of letters caught during the game. </p>
+		<p> <strong>Tips:</strong> Pay attention to the displayed letter and respond quickly. The target moves after every 10 successful catches, so stay alert! </p>
+		<p> <strong>Controls:</strong> Use the keyboard to press the corresponding letter displayed on the screen. </p>
+		<p> <strong>Have Fun:</strong> Enjoy the challenge and see how many letters you can catch! </p>
+	</details>
+-->
+	<footer> 2023 | CSS </footer>
+</body>
+
+</html>
