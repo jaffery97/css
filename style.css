@@ -36,10 +36,10 @@ body {
 }
 
 .column {
+	height: 100px;
+	width: 300px;
 	margin: 20px;
-	float: left;
-	width: 31%;
-	padding: 50px;
+	padding: 0px;
 	text-align: center;
 	cursor: pointer;
 	color: white;
