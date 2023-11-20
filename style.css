@@ -202,7 +202,7 @@ body {
 	.column a {
 		font-size: 20px;
 	}
-	.row {
+	.container {
 		width: 100%;
 		display: none;
 		/*
