@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="../nav.css">
+	<title>Draggable Word Game</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+	<nav>
+		<div class="header"> <a href="../index.html" class="logo">CSS</a>
+			<br>
+			<p>Computer Steering Skills</p>
+			<div class="header-right"> <a href="#about" onclick="refreshPage()">Refresh</a> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
+		</div>
+		<script type="application/javascript" src="../nav.js"></script>
+	</nav>
+
+	<div class="main">
+		<div class="container" id="container"></div>
+
+		<div id="targetSentence"></div>
+
+		<div class="dropzone" id="dropzone" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+
+		<div id="show">
+
+
+			<div id="myNotification" class="notification">
+
+				<!-- Notification content -->
+				<div class="notification-content">
+					<div class="notification-header">
+						<h2 style="font-size: 2vw;">Congratulations! It matches!</h2>
+					</div>
+					<div class="notification-body">
+						<spna onclick="refreshGame()"><i class="fa fa-refresh fa-spin" style="font-size:10vw;cursor: pointer;border: none;"></i></spna>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<script src="script.js"></script>
+
+	<footer> 2023 | CSS </footer>
+</body>
+
+</html>

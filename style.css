@@ -144,7 +144,7 @@ body {
 	outline: none;
 	border-radius: 5px;
 	border: 2px solid #2c0b8e;
-	background: gray;
+	background: black;
 }
 
 .choice:hover {
@@ -156,9 +156,11 @@ body {
 	.column {
 		width: 90%;
 	}
+
 	.column a {
 		font-size: 30px;
 	}
+
 	/*
 		.row {
 		width: 100%;
@@ -176,7 +178,7 @@ body {
 }
 
 #keyboard {
-	background-color: saddlebrown;
+	background-color: cadetblue;
 }
 
 
@@ -199,9 +201,11 @@ body {
 	.column {
 		width: 90%;
 	}
+
 	.column a {
 		font-size: 20px;
 	}
+
 	.container {
 		width: 100%;
 		display: none;

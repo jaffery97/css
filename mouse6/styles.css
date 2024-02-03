@@ -1,0 +1,153 @@
+.main {
+	font-family: 'Arial', sans-serif;
+	display: grid;
+	align-content: center;
+	justify-content: center;
+	margin: auto;
+	margin-top: 2vh;
+}
+
+.container {
+	padding: 20px;
+	display: inline-block;
+	position: relative;
+
+	text-align: center;
+	width: 100vh;
+	height: 100%;
+
+}
+
+.word {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	cursor: move;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	display: inline-block;
+	/* Each word takes up a single line */
+}
+
+.word:nth-child(even) {
+	color: white;
+	background-color: black;
+}
+
+.word:nth-child(Odd) {
+	color: yellow;
+	background-color: brown;
+}
+
+.dropzone {
+	border: 2px dashed #aaa;
+	margin-top: 20px;
+	padding: 10px;
+	width: 100vh;
+	height: 50px;
+	text-align: center;
+	white-space: nowrap;
+	/* Keeps content in a single line */
+	display: inline-block;
+	/* Ensure the dropzone is inline-block */
+}
+
+/* Add this to your styles.css file */
+.match {
+	background-color: #8aff8a;
+	/* Change the color as desired */
+	transition: background-color 1s ease;
+	/* Add a smooth transition effect */
+}
+
+#show {
+	display: none;
+}
+
+#targetSentence {
+	text-align: center;
+	color: navy;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+/* The Notification (background) */
+.notification {
+	display: block;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+
+}
+
+/* Notification Content */
+.notification-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	border: 1px solid #888;
+	width: 50%;
+	height: 50%;
+	border-radius: 80px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0
+	}
+
+	to {
+		top: 0;
+		opacity: 1
+	}
+}
+
+@keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0
+	}
+
+	to {
+		top: 0;
+		opacity: 1
+	}
+}
+
+.notification-header {
+	padding: 2px 16px;
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+	letter-spacing: 5px;
+}
+
+
+
+.notification-body {
+	padding: 2px 16px;
+	text-align: center;
+	display: grid;
+	justify-content: center;
+	margin: auto;
+	position: relative;
+	top: 50px;
+
+}
