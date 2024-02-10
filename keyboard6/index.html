@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8">
+	<title>Typing Speed Test</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../nav.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+	<nav>
+		<div class="header"> <a href="../index.html" class="logo">CSS</a>
+			<br>
+			<p>Computer Steering Skills</p>
+			<div class="header-right"> <a href="#about" onclick="refreshPage()">Refresh</a> <a href="#about">Log in</a> <a href="#about">Sign in</a> </div>
+		</div>
+		<script type="application/javascript" src="../nav.js"></script>
+	</nav>
+
+	<div class="wrapper">
+		<input type="text" class="input-field">
+		<div class="content-box">
+			<div class="typing-text">
+				<p></p>
+			</div>
+			<div class="content">
+				<ul class="result-details">
+					<li class="time">
+						<p>Time Left:</p>
+						<span><b id="second"></b></span>
+					</li>
+					<li class="mistake">
+						<p>Mistakes:</p>
+						<span>0</span>
+					</li>
+					<li class="wpm">
+						<p>WPM:</p>
+						<span>0</span>
+					</li>
+					<li class="cpm">
+						<p>CPM:</p>
+						<span>0</span>
+					</li>
+				</ul>
+				<button>Try Again</button>
+
+				<div class="setting">
+
+
+					<form id="customTimeForm">
+						<label for="customTimeInput">Set Timer: </label>
+						<select name="cars" id="customTimeInput">
+							<option id="secods"></option>
+							<option value="240">240s</option>
+							<option value="180">180s</option>
+							<option value="150">150s</option>
+							<option value="120">120s</option>
+							<option value="90">90s</option>
+							<option value="60">60s</option>
+							<option value="30">30s</option>
+						</select>
+						<button type="button" onclick="setCustomTime()">Set</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<center><img src="img/keyboard.png" class="instruciton"></center>
+
+	<script src="js/paragraphs.js"></script>
+	<script src="js/script.js"></script>
+
+
+	<script>
+		function setCustomTime() {
+			const customTimeInput = document.getElementById('customTimeInput');
+			const customTime = parseInt(customTimeInput.value, 10);
+
+			if (!isNaN(customTime) && customTime > 0) {
+				// Save the custom time to local storage
+				localStorage.setItem('customTime', customTime);
+				location.reload();
+
+			} else {
+				alert('Please enter a valid positive number for custom time.');
+			}
+		}
+
+		document.getElementById("secods").innerHTML = parseInt(localStorage.getItem('customTime')) + "s";
+		document.getElementById("second").innerHTML = parseInt(localStorage.getItem('customTime')) + "s";
+
+	</script>
+
+</body>
+
+</html>

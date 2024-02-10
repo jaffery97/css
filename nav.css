@@ -6,6 +6,7 @@
 } */
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@600&display=swap');
+
 nav {
 	height: 100px;
 	position: relative;
@@ -16,6 +17,10 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: 'Fira Sans', sans-serif;
+}
+
+body::-webkit-scrollbar {
+	display: none;
 }
 
 .header {
@@ -97,6 +102,7 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
+
 	/* .header a {
     float: none;
     display: block;
@@ -106,7 +112,8 @@ footer {
 	.header-right {
 		float: right;
 	}
-/*
+
+	/*
 	footer {
 		position: relative;
 		text-align: center;
