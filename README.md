@@ -2,13 +2,6 @@
 
 Welcome to the Keyboard and Mouse Skills Training project! This collection of interactive web applications is designed to enhance your computer steering skills. Whether you're a beginner looking to improve your typing speed or someone aiming to refine your mouse precision, these applications offer a fun and engaging way to boost your computer skills.
 
-## Table of Contents
-
-- [Features](#features)
-- [How to Use](#how-to-use)
-- [Contributing](#contributing)
-- [Technologies Used](#technologies-used)
-- [License](#license)
 
 ## Features
 
@@ -21,11 +14,6 @@ Welcome to the Keyboard and Mouse Skills Training project! This collection of in
 - **Catch Me**: Enhance your mouse control by catching moving objects.
 - **Number Sequence**: Practice mouse precision by sequencing numbers.
 
-## How to Use
-
-1. Click on the provided links to access each application.
-2. Each application comes with clear instructions on how to use it effectively.
-3. Enjoy the interactive activities designed to improve your keyboard and mouse skills.
 
 ## Contributing
 
@@ -45,4 +33,4 @@ Contributions are welcome! If you have ideas for new activities, improvements, o
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
